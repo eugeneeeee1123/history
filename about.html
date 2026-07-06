@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 ABOUT — 史阅 THE ARCHIVUM</title>
+<meta name="description" content="关于史阅这份档案的编纂方式、取材与局限。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="返回首页">
+    <span class="seal" id="brandSeal"></span>
+    <span class="brand-text"><span class="brand-zh">史阅</span><span class="brand-en">THE ARCHIVUM</span></span>
+  </a>
+  <nav class="topnav">
+    <button class="tbtn" data-nav-key="home" data-page="index.html" onclick="location.href='index.html'"><span class="full">首页</span></button>
+    <button class="tbtn" data-nav-key="asia" data-page="asia.html" onclick="location.href='asia.html'"><span class="full">亚洲</span></button>
+    <button class="tbtn" data-nav-key="europe" data-page="europe.html" onclick="location.href='europe.html'"><span class="full">欧洲</span></button>
+    <button class="tbtn" data-nav-key="americas" data-page="americas.html" onclick="location.href='americas.html'"><span class="full">美洲</span></button>
+    <button class="tbtn" data-nav-key="gallery" data-page="gallery.html" onclick="location.href='gallery.html'"><span class="full">画廊</span></button>
+    <button class="tbtn" data-nav-key="about" data-page="about.html" onclick="location.href='about.html'"><span class="full">关于</span></button>
+    <button class="tbtn" data-nav-key="contact" data-page="contact.html" onclick="location.href='contact.html'"><span class="full">联系</span></button>
+    <button class="tbtn" id="searchToggle"><span class="full" data-i18n="nav.search">检索</span> ⌕</button>
+    <button class="tbtn ghost lang-pill" id="langToggle">EN</button>
+  </nav>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="搜索">
+  <button class="search-close" id="searchClose" aria-label="关闭搜索">✕</button>
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索时代、人物、朝代……" autocomplete="off">
+    <div class="search-hint" data-i18n="search.hint">按名称搜索 3 大区域 · 46 个时代 · 121 位人物</div>
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<main>
+  <div class="about-hero">
+    <div class="hero-eyebrow" data-i18n="about.eyebrow">ABOUT THIS ARCHIVE</div>
+    <h1 class="hero-title" style="font-size:clamp(2.4rem,5vw,4rem)">关于<em>史阅</em></h1>
+    <p class="hero-desc" style="margin-top:20px">史阅（THE ARCHIVUM）是一份以人物为线索重新编目的世界文明档案，收录三大洲、五个文明区域、46 个历史时代、121 位真实与传说人物。</p>
+  </div>
+
+  <div class="about-body">
+    <div class="about-block">
+      <h3>这是什么</h3>
+      <p>史阅把历史拆解成三层结构来阅读：<strong>大陆</strong>（亚洲 / 欧洲 / 美洲）→ <strong>文明区域</strong>（如东亚、阿拉伯与埃及、马来与群岛）→ <strong>时代</strong>（如商末、大秦帝国、罗马帝国）→ <strong>人物</strong>。每一位人物都附有生平简述、大事记年表，以及一句归于其名下的话。</p>
+      <p>这是一个个人作品项目，用来练习信息架构、前端交互与内容编目，而不是一部严谨的学术著作。</p>
+    </div>
+
+    <div class="about-block">
+      <h3>取材与局限</h3>
+      <p>档案内容以公开历史记载为基础，但包含<strong>历史重述与部分文学化改编</strong>——例如人物的"名言"多为后世归因或基于史料精神的合理重写，"传奇评级"（★）是一种叙事性的趣味标注，用来表达人物在通俗叙事中的知名度与戏剧性，并非严肃的历史学排名。</p>
+      <p>部分时代与人物的分类（统治者 / 军事将领 / 谋士学者 / 传说人物 / 其他）由关键词自动归类生成，个别归类可能存在主观偏差，欢迎指正。</p>
+    </div>
+
+    <div class="about-block">
+      <h3>结构说明</h3>
+      <ul class="about-list">
+        <li><strong>亚洲</strong> — 合并了东亚（中日韩）、阿拉伯与埃及、马来与群岛三个子区域，可在页面内切换。</li>
+        <li><strong>欧洲</strong> — 从罗马帝国到两次世界大战的欧洲大陆脉络。</li>
+        <li><strong>美洲</strong> — 玛雅与阿兹特克的中南美洲文明，延伸至美利坚合众国的崛起。</li>
+        <li><strong>画廊</strong> — 全部 121 位人物的总名录，可跨区域按身份筛选浏览。</li>
+      </ul>
+    </div>
+
+    <div class="about-block">
+      <h3>技术说明</h3>
+      <p>本站为纯前端项目，仅使用 HTML、CSS 与原生 JavaScript 构建，未使用任何框架或构建工具，所有图形（印章、星盘装饰）均以内联 SVG 实时生成。</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>史阅 · THE ARCHIVUM — 文明编年史档案</span>
+    <span data-i18n="footer.note">内容为历史重述与部分文学改编，用于个人作品展示</span>
+  </footer>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="eraDrawer" role="dialog" aria-label="时代详情">
+  <button class="drawer-close" id="eraDrawerClose">✕</button>
+  <div id="eraDrawerContent"></div>
+</div>
+<div class="drawer" id="personDrawer" role="dialog" aria-label="人物档案">
+  <button class="drawer-close" id="personDrawerClose">✕</button>
+  <div id="personDrawerContent"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+</body>
+</html>

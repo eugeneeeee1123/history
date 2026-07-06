@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欧洲 EUROPE — 史阅 THE ARCHIVUM</title>
+<meta name="description" content="从罗马帝国到两次世界大战的欧洲人物编年史。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="返回首页">
+    <span class="seal" id="brandSeal"></span>
+    <span class="brand-text"><span class="brand-zh">史阅</span><span class="brand-en">THE ARCHIVUM</span></span>
+  </a>
+  <nav class="topnav">
+    <button class="tbtn" data-nav-key="home" data-page="index.html" onclick="location.href='index.html'"><span class="full">首页</span></button>
+    <button class="tbtn" data-nav-key="asia" data-page="asia.html" onclick="location.href='asia.html'"><span class="full">亚洲</span></button>
+    <button class="tbtn" data-nav-key="europe" data-page="europe.html" onclick="location.href='europe.html'"><span class="full">欧洲</span></button>
+    <button class="tbtn" data-nav-key="americas" data-page="americas.html" onclick="location.href='americas.html'"><span class="full">美洲</span></button>
+    <button class="tbtn" data-nav-key="gallery" data-page="gallery.html" onclick="location.href='gallery.html'"><span class="full">画廊</span></button>
+    <button class="tbtn" data-nav-key="about" data-page="about.html" onclick="location.href='about.html'"><span class="full">关于</span></button>
+    <button class="tbtn" data-nav-key="contact" data-page="contact.html" onclick="location.href='contact.html'"><span class="full">联系</span></button>
+    <button class="tbtn" id="searchToggle"><span class="full" data-i18n="nav.search">检索</span> ⌕</button>
+    <button class="tbtn ghost lang-pill" id="langToggle">EN</button>
+  </nav>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="搜索">
+  <button class="search-close" id="searchClose" aria-label="关闭搜索">✕</button>
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索时代、人物、朝代……" autocomplete="off">
+    <div class="search-hint" data-i18n="search.hint">按名称搜索 3 大区域 · 46 个时代 · 121 位人物</div>
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<main>
+  <div class="civ-hero" id="civHero"></div>
+  <div class="civ-body">
+    <aside class="civ-sidebar" id="civSidebar"></aside>
+    <div class="civ-main" id="civMain"></div>
+  </div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="eraDrawer" role="dialog" aria-label="时代详情">
+  <button class="drawer-close" id="eraDrawerClose">✕</button>
+  <div id="eraDrawerContent"></div>
+</div>
+<div class="drawer" id="personDrawer" role="dialog" aria-label="人物档案">
+  <button class="drawer-close" id="personDrawerClose">✕</button>
+  <div id="personDrawerContent"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>const REGION_KEY = "europe";</script>
+<script src="region.js"></script>
+</body>
+</html>

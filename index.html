@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>史阅 THE ARCHIVUM — 文明编年史</title>
+<meta name="description" content="一部横跨亚洲、欧洲与美洲的人物编年史档案。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="返回首页">
+    <span class="seal" id="brandSeal"></span>
+    <span class="brand-text"><span class="brand-zh">史阅</span><span class="brand-en">THE ARCHIVUM</span></span>
+  </a>
+  <nav class="topnav">
+    <button class="tbtn" data-nav-key="home" data-page="index.html" onclick="location.href='index.html'"><span class="full">首页</span></button>
+    <button class="tbtn" data-nav-key="asia" data-page="asia.html" onclick="location.href='asia.html'"><span class="full">亚洲</span></button>
+    <button class="tbtn" data-nav-key="europe" data-page="europe.html" onclick="location.href='europe.html'"><span class="full">欧洲</span></button>
+    <button class="tbtn" data-nav-key="americas" data-page="americas.html" onclick="location.href='americas.html'"><span class="full">美洲</span></button>
+    <button class="tbtn" data-nav-key="gallery" data-page="gallery.html" onclick="location.href='gallery.html'"><span class="full">画廊</span></button>
+    <button class="tbtn" data-nav-key="about" data-page="about.html" onclick="location.href='about.html'"><span class="full">关于</span></button>
+    <button class="tbtn" data-nav-key="contact" data-page="contact.html" onclick="location.href='contact.html'"><span class="full">联系</span></button>
+    <button class="tbtn" id="searchToggle"><span class="full" data-i18n="nav.search">检索</span> ⌕</button>
+    <button class="tbtn ghost lang-pill" id="langToggle">EN</button>
+  </nav>
+</header>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="搜索">
+  <button class="search-close" id="searchClose" aria-label="关闭搜索">✕</button>
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索时代、人物、朝代……" autocomplete="off">
+    <div class="search-hint" data-i18n="search.hint">按名称搜索 3 大区域 · 46 个时代 · 121 位人物</div>
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<main>
+  <div class="hero">
+    <div class="hero-astrolabe" id="heroAstrolabe" aria-hidden="true"></div>
+    <div class="hero-eyebrow"><span data-i18n="hero.eyebrow">A LEDGER OF EMPIRES</span></div>
+    <h1 class="hero-title">
+      CIVILIZATION<br><em>EPIC</em>
+      <span class="zh">文明，以人物为经纬</span>
+    </h1>
+    <p class="hero-desc" data-i18n="hero.desc">从尼罗河到长安城，从马六甲海峡到安第斯雨林——这是一部收录 121 位真实与传说人物的编年史档案，按大陆、文明与身份重新编目。</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="asia.html" data-i18n="hero.cta">开始查阅 →</a>
+      <button class="link-scroll" data-scroll="#homeArchive"><span data-i18n="hero.scroll">浏览三大洲卷宗</span><span class="arrow">↓</span></button>
+    </div>
+  </div>
+
+  <div class="stats-strip" id="statsStrip"></div>
+
+  <div class="section" id="homeArchive">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="archive.eyebrow">THREE CONTINENTS</div>
+        <h2 class="section-title" data-i18n="archive.title">卷宗总览</h2>
+      </div>
+      <p class="section-note" data-i18n="archive.note">每一卷收录一个大陆区域的完整时代脉络与代表人物，点击展开。</p>
+    </div>
+    <div class="civ-grid" id="civGrid"></div>
+  </div>
+
+  <div class="section" id="homeUtility" style="padding-top:0">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="more.eyebrow">MORE FROM THE ARCHIVUM</div>
+        <h2 class="section-title" data-i18n="more.title">更多内容</h2>
+      </div>
+    </div>
+    <div class="util-grid" id="utilityGrid"></div>
+  </div>
+
+  <div class="section" id="homeTimeline">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow" data-i18n="rail.eyebrow">SELECTED ENTRIES</div>
+        <h2 class="section-title" data-i18n="rail.title">跨文明重要时代</h2>
+      </div>
+    </div>
+    <div class="rail-wrap"><div class="rail" id="homeRail"></div></div>
+  </div>
+
+  <footer class="site-footer">
+    <span>史阅 · THE ARCHIVUM — 文明编年史档案</span>
+    <span data-i18n="footer.note">内容为历史重述与部分文学改编，用于个人作品展示</span>
+  </footer>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="eraDrawer" role="dialog" aria-label="时代详情">
+  <button class="drawer-close" id="eraDrawerClose">✕</button>
+  <div id="eraDrawerContent"></div>
+</div>
+<div class="drawer" id="personDrawer" role="dialog" aria-label="人物档案">
+  <button class="drawer-close" id="personDrawerClose">✕</button>
+  <div id="personDrawerContent"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script src="home.js"></script>
+</body>
+</html>
