@@ -38,7 +38,7 @@
 
   function renderUtilityRow(){
     const items = [
-      { href:'gallery.html', glyph:'☰', title: t('nav.gallery'), desc: {zh:'全部 121 位人物一览，按大洲与身份筛选。', en:'All 121 figures — filter by continent or role.'}[APP.lang] },
+      { href:'gallery.html', glyph:'☰', title: t('nav.gallery'), desc: {zh:`全部 ${Object.keys(PERSON).length} 位人物一览，按大洲与身份筛选。`, en:`All ${Object.keys(PERSON).length} figures - filter by continent or role.`}[APP.lang] },
       { href:'about.html',   glyph:'ⓘ', title: t('nav.about'),   desc: {zh:'这份档案是如何编纂的，以及它的取材与局限。', en:'How this archive was compiled, its sources and limits.'}[APP.lang] },
       { href:'contact.html', glyph:'✉', title: t('nav.contact'), desc: {zh:'指正史实、提出建议，或只是打个招呼。', en:'Report an error, suggest an entry, or just say hello.'}[APP.lang] },
     ];

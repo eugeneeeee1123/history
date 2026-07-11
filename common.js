@@ -11,7 +11,7 @@ const CIVS    = CHRONICLE_DATA.civs;
 const PERSON  = CHRONICLE_DATA.persons;
 const CATS    = CHRONICLE_DATA.catLabels;
 const REGIONS = CHRONICLE_DATA.regions;
-const REGION_LIST = ['asia','europe','americas'].map(k=>REGIONS[k]);
+const REGION_LIST = ['asia','europe','americas','africa'].map(k=>REGIONS[k]).filter(Boolean);
 
 const APP = { lang: (localStorage.getItem('archivum_lang') || 'zh') };
 
@@ -20,12 +20,12 @@ const APP = { lang: (localStorage.getItem('archivum_lang') || 'zh') };
    ------------------------------------------------------------ */
 const I18N = {
   zh: {
-    'nav.home':'首页','nav.asia':'亚洲','nav.europe':'欧洲','nav.americas':'美洲',
+    'nav.home':'首页','nav.asia':'亚洲','nav.europe':'欧洲','nav.americas':'美洲','nav.africa':'非洲',
     'nav.gallery':'人物画廊','nav.about':'关于','nav.contact':'联系我们','nav.search':'检索',
     'hero.eyebrow':'A LEDGER OF EMPIRES · 帝国的账簿',
-    'hero.desc':'从尼罗河到长安城，从马六甲海峡到安第斯雨林——这是一部收录 121 位真实与传说人物的编年史档案，按大陆、文明与身份重新编目。',
-    'hero.cta':'开始查阅 →','hero.scroll':'浏览三大洲卷宗',
-    'archive.eyebrow':'THREE CONTINENTS','archive.title':'卷宗总览',
+    'hero.desc':'从尼罗河到长安城，从马六甲海峡到安第斯雨林，这是一部收录 163 位真实与传说人物的编年史档案，按大陆、文明与身份重新编目。',
+    'hero.cta':'开始查阅 →','hero.scroll':'浏览四大洲卷宗',
+    'archive.eyebrow':'FOUR CONTINENTS','archive.title':'卷宗总览',
     'archive.note':'每一卷收录一个大陆区域的完整时代脉络与代表人物，点击展开。',
     'more.eyebrow':'MORE FROM THE ARCHIVUM','more.title':'更多内容',
     'rail.eyebrow':'SELECTED ENTRIES','rail.title':'跨文明重要时代',
@@ -36,22 +36,22 @@ const I18N = {
     'era.open':'展开时代 →','era.figures':'收录人物','more':'其他',
     'ed.desc':'时代概述','ed.figures':'人物名录',
     'pd.bio':'生平简述','pd.events':'大事记年','pd.quote':'留言',
-    'search.hint':'按名称搜索 3 大区域 · 46 个时代 · 121 位人物',
+    'search.hint':'按名称搜索 4 大区域 · 68 个时代 · 163 位人物',
     'search.empty':'未找到匹配的记录','search.eras':'时代','search.figures':'人物',
     'search.placeholder':'搜索时代、人物、朝代……',
     'gallery.eyebrow':'THE FULL ROSTER','gallery.title':'人物画廊',
-    'gallery.note':'全部 121 位人物一览，可按大洲与身份筛选。',
+    'gallery.note':'全部 163 位人物一览，可按大洲与身份筛选。',
     'gallery.filter.region':'按大洲','gallery.filter.cat':'按身份','gallery.count':'位人物',
     'about.eyebrow':'ABOUT THIS ARCHIVE','about.title':'关于史阅',
     'contact.eyebrow':'GET IN TOUCH','contact.title':'联系我们',
   },
   en: {
-    'nav.home':'Home','nav.asia':'Asia','nav.europe':'Europe','nav.americas':'Americas',
+    'nav.home':'Home','nav.asia':'Asia','nav.europe':'Europe','nav.americas':'Americas','nav.africa':'Africa',
     'nav.gallery':'Gallery','nav.about':'About','nav.contact':'Contact','nav.search':'Search',
     'hero.eyebrow':'A LEDGER OF EMPIRES',
-    'hero.desc':'From the Nile to Chang\'an, from the Strait of Malacca to the Andean jungle — an archive of 121 historical and legendary figures, catalogued by continent, civilization and role.',
-    'hero.cta':'Enter the Archive →','hero.scroll':'Browse the three volumes',
-    'archive.eyebrow':'THREE CONTINENTS','archive.title':'The Archive',
+    'hero.desc':'From the Nile to Chang\'an, from the Strait of Malacca to the Andean jungle, an archive of 163 historical and legendary figures, catalogued by continent, civilization and role.',
+    'hero.cta':'Enter the Archive →','hero.scroll':'Browse the four volumes',
+    'archive.eyebrow':'FOUR CONTINENTS','archive.title':'The Archive',
     'archive.note':'Each volume holds one continent\'s full timeline and its defining figures. Click to open.',
     'more.eyebrow':'MORE FROM THE ARCHIVUM','more.title':'More',
     'rail.eyebrow':'SELECTED ENTRIES','rail.title':'Cross-Civilization Highlights',
@@ -62,11 +62,11 @@ const I18N = {
     'era.open':'Open era →','era.figures':'Figures','more':'more',
     'ed.desc':'Overview','ed.figures':'Figures of this Era',
     'pd.bio':'Biography','pd.events':'Timeline','pd.quote':'Recorded Words',
-    'search.hint':'Search across 3 regions · 46 eras · 121 figures',
+    'search.hint':'Search across 4 regions · 68 eras · 163 figures',
     'search.empty':'No matching records','search.eras':'Eras','search.figures':'Figures',
     'search.placeholder':'Search eras, figures, dynasties…',
     'gallery.eyebrow':'THE FULL ROSTER','gallery.title':'Figure Gallery',
-    'gallery.note':'All 121 figures at a glance — filter by continent or role.',
+    'gallery.note':'All 163 figures at a glance - filter by continent or role.',
     'gallery.filter.region':'By continent','gallery.filter.cat':'By role','gallery.count':'figures',
     'about.eyebrow':'ABOUT THIS ARCHIVE','about.title':'About The Archivum',
     'contact.eyebrow':'GET IN TOUCH','contact.title':'Contact',

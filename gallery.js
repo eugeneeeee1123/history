@@ -34,17 +34,37 @@
       return true;
     });
     $('#galCount').textContent = list.length + ' ' + t('gallery.count');
-    $('#galGrid').innerHTML = list.map(item=>{
+    $('#galGrid').innerHTML = list.length ? list.map((item,index)=>{
       const color = item.p.color || '#c9a35f';
+      const rhythm = ['feature','portrait','standard','wide','standard','portrait','standard','standard'][index % 8];
       return `
-      <button class="gal-card" data-person="${item.key}" style="--civ:${color}">
-        <div class="gal-seal">${sealSVG(item.p.name[0], color, 60)}</div>
-        <div class="gal-name">${esc(item.p.name)}</div>
-        <div class="gal-en">${esc(item.p.en)}</div>
-        <div class="gal-meta">${item.loc?esc(item.loc.civ.nameZh):''}</div>
-        <div class="gal-stars">${starRow(item.p.stars, color)}</div>
+      <button class="gal-card gal-card--${rhythm}" data-person="${item.key}" style="--civ:${color};--order:${index}">
+        <div class="gal-card-top">
+          <div class="gal-meta">${item.loc?esc(item.loc.civ.nameZh):''}</div>
+          <div class="gal-stars">${starRow(item.p.stars, color)}</div>
+        </div>
+        <div class="gal-seal">${sealSVG(item.p.name[0], color, rhythm==='feature'?112:76)}</div>
+        <div class="gal-card-copy">
+          <div class="gal-name">${esc(item.p.name)}</div>
+          <div class="gal-en">${esc(item.p.en)}</div>
+        </div>
       </button>`;
-    }).join('');
+    }).join('') : `<div class="gal-empty">${esc(t('search.empty'))}</div>`;
+    animateGrid();
+  }
+
+  function animateGrid(){
+    if(!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.gal-card').forEach((card,index)=>{
+      gsap.fromTo(card,
+        { opacity:0, y:28, scale:.96 },
+        { opacity:1, y:0, scale:1, duration:.75, delay:(index%8)*.035, ease:'power3.out',
+          scrollTrigger:{ trigger:card, start:'top 92%', once:true }
+        }
+      );
+    });
+    ScrollTrigger.refresh();
   }
 
   function renderAll(){ renderFilters(); renderGrid(); }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>人物画廊 GALLERY — 史阅 THE ARCHIVUM</title>
+<title>人物画廊 GALLERY - 史阅 THE ARCHIVUM</title>
 <meta name="description" content="全部 121 位人物一览，可按大洲与身份筛选。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,7 @@
     <button class="tbtn" data-nav-key="asia" data-page="asia.html" onclick="location.href='asia.html'"><span class="full">亚洲</span></button>
     <button class="tbtn" data-nav-key="europe" data-page="europe.html" onclick="location.href='europe.html'"><span class="full">欧洲</span></button>
     <button class="tbtn" data-nav-key="americas" data-page="americas.html" onclick="location.href='americas.html'"><span class="full">美洲</span></button>
+    <button class="tbtn" data-nav-key="africa" data-page="africa.html" onclick="location.href='africa.html'"><span class="full">非洲</span></button>
     <button class="tbtn" data-nav-key="gallery" data-page="gallery.html" onclick="location.href='gallery.html'"><span class="full">画廊</span></button>
     <button class="tbtn" data-nav-key="about" data-page="about.html" onclick="location.href='about.html'"><span class="full">关于</span></button>
     <button class="tbtn" data-nav-key="contact" data-page="contact.html" onclick="location.href='contact.html'"><span class="full">联系</span></button>
@@ -41,14 +42,14 @@
 </div>
 
 <main>
-  <div class="civ-hero" style="--civ:#c9a35f;--civ-soft:rgba(201,163,95,.12)">
+  <div class="civ-hero gallery-hero" style="--civ:#c9a35f;--civ-soft:rgba(201,163,95,.12)">
     <a class="back-link" href="index.html">← <span data-i18n="back">返回首页</span></a>
     <div class="civ-hero-eyebrow" data-i18n="gallery.eyebrow">THE FULL ROSTER</div>
     <h2 class="civ-hero-title" data-i18n="gallery.title">人物画廊</h2>
     <p class="civ-hero-desc" data-i18n="gallery.note">全部 121 位人物一览，可按大洲与身份筛选。</p>
   </div>
 
-  <div class="section">
+  <div class="section gallery-section">
     <div class="gallery-controls">
       <div class="gal-filter-group">
         <div class="sb-label" data-i18n="gallery.filter.region">按大洲</div>
@@ -64,7 +65,7 @@
   </div>
 
   <footer class="site-footer">
-    <span>史阅 · THE ARCHIVUM — 文明编年史档案</span>
+    <span>史阅 · THE ARCHIVUM - 文明编年史档案</span>
     <span data-i18n="footer.note">内容为历史重述与部分文学改编，用于个人作品展示</span>
   </footer>
 </main>
@@ -81,6 +82,8 @@
 
 <script src="data.js"></script>
 <script src="common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 <script src="gallery.js"></script>
 </body>
 </html>

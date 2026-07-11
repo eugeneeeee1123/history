@@ -6,6 +6,12 @@
 (function(){
   "use strict";
   const region = REGIONS[REGION_KEY];
+  if(!region){
+    document.addEventListener('DOMContentLoaded', ()=>{
+      $('#civHero').innerHTML = `<div class="region-unavailable">该区域的档案资料尚未收录。</div>`;
+    });
+    return;
+  }
   const subCivs = region.civs.map(k=>CIVS[k]);
   const state = { civKey: subCivs[0].key, filter: 'all' };
 
@@ -26,16 +32,14 @@
     const hero = $('#civHero');
     hero.style.setProperty('--civ', region.color);
     hero.style.setProperty('--civ-soft', region.colorSoft);
+    hero.className = `civ-hero region-hero region-${region.key}-hero`;
     hero.innerHTML = `
       <a class="back-link" href="index.html">← ${t('back')}</a>
-      <div class="civ-hero-eyebrow">VOL. ${region.roman} · ${esc(region.sub)}</div>
+      <div class="civ-hero-eyebrow">${esc(region.sub)}</div>
       <h2 class="civ-hero-title">${esc(region.nameEn)}</h2>
       <div class="civ-hero-sub">${esc(region.nameZh)}</div>
       <p class="civ-hero-desc">${esc(region.tagline)}</p>
-      <div class="civ-hero-stats">
-        <div class="chs-item"><div class="chs-num">${eras}</div><div class="chs-label">${t('stat.era')}</div></div>
-        <div class="chs-item"><div class="chs-num">${figs}</div><div class="chs-label">${t('stat.fig')}</div></div>
-      </div>`;
+      <div class="region-hero-mark" aria-hidden="true">${esc(region.glyph)}</div>`;
   }
 
   function catCounts(civ){
@@ -71,23 +75,32 @@
           <span>${esc(CATS[k][APP.lang])}</span><span class="sb-filter-count">${counts[k]}</span>
         </button>`)).join('');
 
-    const index = civ.eras.map((e,i)=>`
+    const index = civ.eras.map(e=>`
       <button class="sb-index-item" data-scroll-era="${e.era_key}" style="--civ:${civ.color}">
-        <span class="n">${String(i+1).padStart(2,'0')}</span>${esc(e.name.split('(')[0].split('—')[0].trim())}
+        ${esc(e.name.split('(')[0].split('—')[0].trim())}
       </button>`).join('');
 
     $('#civSidebar').innerHTML = `
       ${switcherHTML}
-      <div class="sb-label">${t('sb.filter')}</div>
-      <div class="sb-filters">${filters}</div>
-      <div class="sb-label">${t('sb.index')}</div>
-      <div class="sb-index">${index}</div>`;
+      <div class="region-control-block"><div class="sb-label">${t('sb.filter')}</div><div class="sb-filters">${filters}</div></div>
+      <div class="region-control-block region-index-block"><div class="sb-label">${t('sb.index')}</div><div class="sb-index">${index}</div></div>`;
   }
 
   function figureMatchesFilter(key){
     if(state.filter==='all') return true;
     const p = PERSON[key];
     return p && p.cat === state.filter;
+  }
+
+  function eraLayout(index){
+    const layouts = {
+      asia:['atlas-feature','atlas-tower','atlas-wide','atlas-standard','atlas-standard'],
+      europe:['europe-manifesto','europe-column','europe-slab','europe-column','europe-wide'],
+      americas:['americas-lead','americas-rise','americas-river','americas-rise','americas-wide'],
+      africa:['africa-monument','africa-sun','africa-sun','africa-horizon','africa-wide']
+    };
+    const pattern = layouts[region.key] || layouts.asia;
+    return pattern[index % pattern.length];
   }
 
   function renderEraFolio(civ, era, index){
@@ -101,15 +114,12 @@
       </button>`).join('');
     const moreTag = extra>0 ? `<span class="folio-more">+${extra} ${t('more')}</span>` : '';
     return `
-      <article class="era-folio ${era.hero?'hero-era':''}" data-era="${era.era_key}" style="--civ:${civ.color}">
-        <div class="folio-inner">
-          <div class="folio-num"><div class="idx">${String(index+1).padStart(2,'0')}</div><div class="tick"></div></div>
-          <div class="folio-body">
-            <div class="folio-date ${era.blood?'blood-flag':''}">${esc(era.date)}</div>
-            <h3 class="folio-name">${esc(era.name)}</h3>
-            <p class="folio-text">${esc(era.text)}</p>
-            <div class="folio-roster">${pills}${moreTag}</div>
-          </div>
+      <article class="era-folio ${eraLayout(index)} ${era.hero?'hero-era':''}" data-era="${era.era_key}" style="--civ:${civ.color}">
+        <div class="folio-body">
+          <div class="folio-date ${era.blood?'blood-flag':''}">${esc(era.date)}</div>
+          <h3 class="folio-name">${esc(era.name)}</h3>
+          <p class="folio-text">${esc(era.text)}</p>
+          <div class="folio-roster">${pills}${moreTag}</div>
         </div>
         <div class="folio-open">${t('era.open')}</div>
       </article>`;
@@ -117,7 +127,7 @@
 
   function renderMain(){
     const civ = activeCiv();
-    $('#civMain').innerHTML = civ.eras.map((e,i)=>renderEraFolio(civ,e,i)).join('');
+    $('#civMain').innerHTML = `<div class="era-archive region-${region.key}-archive">${civ.eras.map((e,i)=>renderEraFolio(civ,e,i)).join('')}</div>`;
   }
 
   function renderAll(){

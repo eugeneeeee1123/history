@@ -352,6 +352,90 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .blood-flag{ color:#c65a4a !important; }
 
 /* ============================================================
+   REGIONAL ARCHIVE REDESIGN
+   ============================================================ */
+.region-hero{
+  min-height:64dvh; display:flex; flex-direction:column; justify-content:flex-end;
+  padding-bottom:clamp(56px,8vw,108px); isolation:isolate;
+}
+.region-hero > *:not(.region-hero-mark){ position:relative; z-index:2; }
+.region-hero-mark{
+  position:absolute; right:clamp(3vw,10vw,13vw); bottom:clamp(-26px,-1vw,-8px); z-index:1;
+  font-family:var(--f-display); font-size:clamp(13rem,34vw,34rem); font-weight:700; line-height:.7;
+  color:var(--civ); opacity:.075; pointer-events:none; user-select:none;
+}
+.region-europe-hero{ align-items:flex-start; }
+.region-europe-hero .region-hero-mark{ right:clamp(5vw,16vw,20vw); opacity:.095; }
+.region-americas-hero{ background:radial-gradient(ellipse 60% 80% at 74% 28%, var(--civ-soft), transparent 70%),var(--ink); }
+.region-africa-hero{ text-align:center; align-items:center; }
+.region-africa-hero .civ-hero-desc{ text-align:center; }
+
+.civ-body{ display:block; }
+.civ-sidebar{
+  position:relative; top:auto; height:auto; overflow:visible; border-right:none; border-bottom:1px solid var(--line);
+  padding:26px clamp(18px,6vw,72px); display:grid; grid-template-columns:minmax(190px,.7fr) minmax(280px,1.2fr) minmax(260px,1fr); gap:clamp(22px,4vw,56px);
+  background:var(--ink);
+}
+.civ-sidebar > .sb-label{ margin:0; align-self:start; padding-top:4px; }
+.region-control-block{ min-width:0; }
+.civ-sidebar .sb-label{ margin-bottom:12px; }
+.sb-switch{ flex-direction:row; flex-wrap:wrap; gap:8px; margin:0; }
+.sb-switch-item{ border:1px solid var(--line); padding:9px 12px; }
+.sb-switch-item.active{ border-color:var(--civ); }
+.sb-filters{ flex-direction:row; flex-wrap:wrap; gap:7px; margin:0; }
+.sb-filter{ width:auto; border:1px solid var(--line); padding:8px 11px; }
+.sb-filter.active{ border-color:var(--civ); background:var(--civ-soft); }
+.sb-index{ display:flex; flex-flow:row wrap; gap:7px 16px; }
+.sb-index-item{ width:auto; padding:2px 0; border:none; font-size:.8rem; }
+.sb-index-item:hover{ border:none; color:var(--civ); }
+.civ-main{ max-width:1600px; margin:auto; padding:clamp(52px,8vw,118px) clamp(18px,6vw,72px) clamp(90px,12vw,160px); }
+.era-archive{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-auto-flow:dense; grid-auto-rows:minmax(220px,auto); gap:10px; }
+.era-archive .era-folio{
+  grid-column:span 6; min-height:300px; margin:0; border:1px solid var(--line); background:var(--ink-2);
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.era-archive .era-folio::before{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.7;
+  background:radial-gradient(circle at 85% 12%, color-mix(in srgb,var(--civ) 21%,transparent), transparent 43%);
+  transition:opacity .45s var(--ease), transform .6s var(--ease);
+}
+.era-archive .era-folio:hover{ transform:translateY(-4px); border-color:color-mix(in srgb,var(--civ) 55%,transparent); }
+.era-archive .era-folio:hover::before{ opacity:1; transform:scale(1.06); }
+.era-archive .folio-body{ position:relative; z-index:1; flex:none; padding:clamp(24px,3.2vw,46px); }
+.era-archive .folio-name{ font-size:clamp(1.55rem,2.6vw,3rem); max-width:17ch; margin-bottom:14px; }
+.era-archive .folio-text{ max-width:55ch; margin-bottom:22px; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; overflow:hidden; }
+.era-archive .folio-roster{ position:relative; z-index:2; }
+.era-archive .roster-pill{ background:rgb(11 10 8 / .78); backdrop-filter:blur(10px); }
+
+/* Asia: a dense atlas, with a dominant entry and complementary tall panel. */
+.region-asia-archive .atlas-feature{ grid-column:span 8; grid-row:span 2; min-height:610px; }
+.region-asia-archive .atlas-tower{ grid-column:span 4; grid-row:span 2; min-height:610px; }
+.region-asia-archive .atlas-wide{ grid-column:span 8; }
+.region-asia-archive .atlas-standard{ grid-column:span 4; }
+.region-asia-archive .atlas-feature .folio-name{ font-size:clamp(2.6rem,5.5vw,6rem); max-width:12ch; }
+
+/* Europe: a sequence of broad historical plates, intentionally offset in scale. */
+.region-europe-archive .europe-manifesto{ grid-column:span 12; min-height:420px; }
+.region-europe-archive .europe-manifesto .folio-name{ font-size:clamp(2.6rem,5vw,5.6rem); max-width:16ch; }
+.region-europe-archive .europe-column{ grid-column:span 5; grid-row:span 2; min-height:610px; }
+.region-europe-archive .europe-slab{ grid-column:span 7; }
+.region-europe-archive .europe-wide{ grid-column:span 7; }
+
+/* Americas: a more horizontal current that uses long, low and rising panels. */
+.region-americas-archive .americas-lead{ grid-column:span 5; grid-row:span 2; min-height:610px; }
+.region-americas-archive .americas-rise{ grid-column:span 7; }
+.region-americas-archive .americas-river{ grid-column:span 7; grid-row:span 2; min-height:610px; }
+.region-americas-archive .americas-wide{ grid-column:span 12; }
+.region-americas-archive .americas-wide .folio-name{ font-size:clamp(2.2rem,4vw,4.8rem); max-width:18ch; }
+
+/* Africa: ready for its supplied data, with a monolithic first chapter. */
+.region-africa-archive .africa-monument{ grid-column:span 9; grid-row:span 2; min-height:610px; }
+.region-africa-archive .africa-sun{ grid-column:span 3; }
+.region-africa-archive .africa-horizon{ grid-column:span 6; }
+.region-africa-archive .africa-wide{ grid-column:span 12; }
+.region-unavailable{ padding:160px clamp(18px,6vw,72px) 80px; color:var(--stone); }
+
+/* ============================================================
    SCRIM + DRAWERS
    ============================================================ */
 .scrim{
@@ -472,23 +556,62 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 /* ============================================================
    GALLERY PAGE
    ============================================================ */
-.gallery-controls{ display:flex; flex-wrap:wrap; gap:36px; margin-bottom:36px; }
-.gal-filter-group{ display:flex; flex-direction:column; gap:10px; }
-.gal-filter-group .sb-label{ margin-bottom:0; }
-.gal-filter-row{ display:flex; flex-wrap:wrap; gap:6px; }
-.gal-filter-row .sb-filter{ border:1px solid var(--line); border-left:1px solid var(--line); padding:7px 14px; }
-.gal-filter-row .sb-filter.active{ border-color:var(--gold); color:var(--gold); }
-.gal-count{ font-family:var(--f-mono); font-size:.7rem; letter-spacing:.1em; color:var(--stone-dim); margin-bottom:22px; }
-.gal-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:2px; background:var(--line); border:1px solid var(--line); }
-.gal-card{
-  background:var(--ink-2); border:none; color:inherit; padding:26px 18px; text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:10px; transition:.25s var(--ease); cursor:pointer;
+.gallery-hero{ min-height:62dvh; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:clamp(56px,8vw,104px); }
+.gallery-hero::after{
+  content:'人物'; position:absolute; right:clamp(-28px,2vw,28px); bottom:-.16em; z-index:0;
+  font-family:var(--f-display); font-size:clamp(9rem,25vw,25rem); font-weight:900; line-height:.75;
+  color:var(--gold); opacity:.035; pointer-events:none;
 }
-.gal-card:hover{ background:var(--ink-3); transform:translateY(-3px); }
-.gal-name{ font-family:var(--f-display); font-size:1rem; font-weight:600; color:var(--bone); }
-.gal-en{ font-family:var(--f-mono); font-size:.62rem; color:var(--stone); letter-spacing:.03em; }
-.gal-meta{ font-family:var(--f-mono); font-size:.62rem; color:var(--civ); letter-spacing:.08em; }
-.gal-stars{ font-size:.75rem; letter-spacing:1px; }
+.gallery-hero > *{ position:relative; z-index:1; }
+.gallery-section{ padding-top:clamp(52px,8vw,112px); }
+.gallery-controls{
+  position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  gap:clamp(28px,5vw,80px); padding:0 0 38px; margin-bottom:22px; border-bottom:1px solid var(--line-strong);
+}
+.gal-filter-group{ display:flex; flex-direction:column; gap:14px; min-width:0; }
+.gal-filter-group .sb-label{ margin-bottom:0; color:var(--stone); }
+.gal-filter-row{ display:flex; flex-wrap:wrap; gap:8px; }
+.gal-filter-row .sb-filter{
+  border:1px solid var(--line-strong); padding:9px 14px; background:transparent; color:var(--stone);
+  transition:background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.gal-filter-row .sb-filter:hover{ border-color:var(--gold-dim); color:var(--bone); transform:translateY(-1px); }
+.gal-filter-row .sb-filter:active{ transform:translateY(1px); }
+.gal-filter-row .sb-filter.active{ border-color:var(--gold); background:var(--gold-wash); color:var(--gold-bright); }
+.gal-count{ font-family:var(--f-mono); font-size:.68rem; letter-spacing:.14em; color:var(--stone); margin:0 0 18px; text-align:right; }
+.gal-grid{
+  display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); grid-auto-flow:dense; grid-auto-rows:minmax(210px,auto);
+  gap:10px; background:transparent; border:none;
+}
+.gal-card{
+  position:relative; grid-column:span 3; min-height:210px; overflow:hidden;
+  background:var(--ink-2); border:1px solid var(--line); color:inherit; padding:20px; text-align:left;
+  display:flex; flex-direction:column; align-items:stretch; justify-content:space-between; gap:20px;
+  transition:background .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease); cursor:pointer;
+}
+.gal-card::before{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.7;
+  background:radial-gradient(circle at 88% 8%, color-mix(in srgb,var(--civ) 18%,transparent), transparent 42%);
+  transition:opacity .45s var(--ease), transform .7s var(--ease);
+}
+.gal-card:hover{ background:var(--ink-3); border-color:color-mix(in srgb,var(--civ) 45%,transparent); transform:translateY(-4px); }
+.gal-card:hover::before{ opacity:1; transform:scale(1.08); }
+.gal-card:active{ transform:translateY(-1px) scale(.99); }
+.gal-card--feature{ grid-column:span 6; grid-row:span 2; min-height:430px; padding:clamp(24px,3vw,38px); }
+.gal-card--wide{ grid-column:span 6; }
+.gal-card--portrait{ grid-row:span 2; min-height:430px; }
+.gal-card-top{ position:relative; z-index:2; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.gal-card-copy{ position:relative; z-index:2; }
+.gal-seal{ position:absolute; z-index:1; right:16px; bottom:12px; opacity:.24; transform:scale(.92); transform-origin:bottom right; transition:.7s var(--ease); }
+.gal-card:hover .gal-seal{ opacity:.48; transform:scale(1.04) rotate(3deg); }
+.gal-card--feature .gal-seal{ right:clamp(22px,4vw,48px); bottom:clamp(22px,4vw,44px); opacity:.3; }
+.gal-name{ font-family:var(--f-display); font-size:clamp(1.15rem,1.7vw,1.55rem); line-height:1.05; font-weight:600; color:var(--bone); max-width:80%; }
+.gal-card--feature .gal-name{ font-size:clamp(2.3rem,4.4vw,4.8rem); letter-spacing:-.03em; max-width:70%; }
+.gal-card--wide .gal-name{ font-size:clamp(1.55rem,2.7vw,2.6rem); }
+.gal-en{ margin-top:8px; font-family:var(--f-mono); font-size:.62rem; color:var(--stone); letter-spacing:.07em; }
+.gal-meta{ font-family:var(--f-mono); font-size:.61rem; color:var(--civ); letter-spacing:.1em; }
+.gal-stars{ font-size:.72rem; letter-spacing:1px; white-space:nowrap; }
+.gal-empty{ grid-column:1/-1; padding:80px 24px; border:1px solid var(--line); color:var(--stone); text-align:center; }
 
 /* ============================================================
    ABOUT PAGE
@@ -545,6 +668,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
    RESPONSIVE
    ============================================================ */
 @media (max-width:980px){
+  .civ-sidebar{ grid-template-columns:1fr 1fr; }
+  .civ-sidebar > .sb-label{ display:none; }
+  .region-index-block{ grid-column:1/-1; }
+  .era-archive{ grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .region-asia-archive .atlas-feature, .region-asia-archive .atlas-wide,
+  .region-europe-archive .europe-manifesto, .region-europe-archive .europe-slab, .region-europe-archive .europe-wide,
+  .region-americas-archive .americas-rise, .region-americas-archive .americas-river, .region-americas-archive .americas-wide,
+  .region-africa-archive .africa-monument, .region-africa-archive .africa-horizon, .region-africa-archive .africa-wide{ grid-column:span 4; }
+  .region-asia-archive .atlas-tower, .region-asia-archive .atlas-standard,
+  .region-europe-archive .europe-column,
+  .region-americas-archive .americas-lead,
+  .region-africa-archive .africa-sun{ grid-column:span 2; }
+  .gallery-controls{ grid-template-columns:1fr; gap:24px; }
+  .gal-grid{ grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .gal-card{ grid-column:span 2; }
+  .gal-card--feature, .gal-card--wide{ grid-column:span 4; }
   .civ-body{ grid-template-columns:1fr; }
   .civ-sidebar{ position:relative; top:0; height:auto; border-right:none; border-bottom:1px solid var(--line);
     padding:28px clamp(18px,6vw,40px); display:flex; flex-direction:column; }
@@ -559,6 +698,34 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .stat-cell:nth-child(2){ border-right:none; }
 }
 @media (max-width:760px){
+  .region-hero{ min-height:54dvh; padding-top:120px; padding-bottom:54px; }
+  .region-hero-mark{ right:14px; bottom:-12px; font-size:12rem; }
+  .region-africa-hero{ align-items:flex-start; text-align:left; }
+  .region-africa-hero .civ-hero-desc{ text-align:left; }
+  .civ-sidebar{ display:flex; flex-direction:column; gap:20px; padding:24px 16px; }
+  .region-control-block{ width:100%; }
+  .sb-switch, .sb-filters, .sb-index{ flex-wrap:nowrap; overflow-x:auto; padding-bottom:7px; scrollbar-width:none; }
+  .sb-switch::-webkit-scrollbar, .sb-filters::-webkit-scrollbar, .sb-index::-webkit-scrollbar{ display:none; }
+  .sb-switch-item, .sb-filter, .sb-index-item{ flex:0 0 auto; }
+  .civ-main{ padding:46px 16px 96px; }
+  .era-archive{ grid-template-columns:1fr; grid-auto-rows:auto; gap:8px; }
+  .era-archive .era-folio,
+  .region-asia-archive .atlas-feature, .region-asia-archive .atlas-tower, .region-asia-archive .atlas-wide, .region-asia-archive .atlas-standard,
+  .region-europe-archive .europe-manifesto, .region-europe-archive .europe-column, .region-europe-archive .europe-slab, .region-europe-archive .europe-wide,
+  .region-americas-archive .americas-lead, .region-americas-archive .americas-rise, .region-americas-archive .americas-river, .region-americas-archive .americas-wide,
+  .region-africa-archive .africa-monument, .region-africa-archive .africa-sun, .region-africa-archive .africa-horizon, .region-africa-archive .africa-wide{ grid-column:span 1; grid-row:span 1; min-height:320px; }
+  .era-archive .folio-body{ padding:28px 24px; }
+  .era-archive .folio-name, .region-asia-archive .atlas-feature .folio-name, .region-europe-archive .europe-manifesto .folio-name, .region-americas-archive .americas-wide .folio-name{ font-size:clamp(2rem,10vw,3.4rem); max-width:14ch; }
+  .gallery-hero{ min-height:52dvh; padding-top:120px; }
+  .gallery-section{ padding-left:16px; padding-right:16px; }
+  .gal-filter-row{ flex-wrap:nowrap; overflow-x:auto; padding:2px 1px 8px; scrollbar-width:none; }
+  .gal-filter-row::-webkit-scrollbar{ display:none; }
+  .gal-count{ text-align:left; }
+  .gal-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(190px,auto); gap:8px; }
+  .gal-card, .gal-card--feature, .gal-card--wide{ grid-column:span 2; min-height:220px; }
+  .gal-card--portrait{ grid-column:span 1; grid-row:span 1; min-height:280px; }
+  .gal-card--feature{ min-height:360px; }
+  .gal-card--feature .gal-name{ max-width:82%; }
   .civ-grid{ grid-template-columns:1fr; }
   .civ-card, .civ-card.big, .civ-card.small{ grid-column:span 1; min-height:280px; }
   .folio-inner{ flex-direction:column; }
@@ -569,12 +736,46 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .topnav .tbtn span.full{ display:none; }
 }
 @media (max-width:520px){
+  .gal-card{ padding:18px; }
+  .gal-card--portrait .gal-card-top{ flex-direction:column; }
+  .gal-card--portrait .gal-name{ max-width:100%; font-size:1.05rem; }
+  .gal-card--portrait .gal-en{ font-size:.56rem; overflow-wrap:anywhere; }
+  .gal-card--portrait .gal-seal{ opacity:.18; }
   .hero{ padding-top:110px; }
   .hero-astrolabe{ opacity:.3; }
 }
 
 @media (prefers-reduced-motion:reduce){
   *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+/* regional archive responsive overrides, kept last to supersede the legacy sidebar rules */
+@media (max-width:980px){
+  .civ-sidebar{ display:grid; grid-template-columns:1fr 1fr; gap:28px; padding:28px clamp(18px,6vw,40px); }
+  .civ-sidebar > .sb-label{ display:none; }
+  .region-index-block{ grid-column:1/-1; }
+  .era-archive{ grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .region-asia-archive .atlas-feature, .region-asia-archive .atlas-wide,
+  .region-europe-archive .europe-manifesto, .region-europe-archive .europe-slab, .region-europe-archive .europe-wide,
+  .region-americas-archive .americas-rise, .region-americas-archive .americas-river, .region-americas-archive .americas-wide,
+  .region-africa-archive .africa-monument, .region-africa-archive .africa-horizon, .region-africa-archive .africa-wide{ grid-column:span 4; }
+  .region-asia-archive .atlas-tower, .region-asia-archive .atlas-standard,
+  .region-europe-archive .europe-column,
+  .region-americas-archive .americas-lead,
+  .region-africa-archive .africa-sun{ grid-column:span 2; }
+}
+@media (max-width:760px){
+  .civ-sidebar{ display:flex; flex-direction:column; gap:20px; padding:24px 16px; }
+  .region-control-block{ width:100%; }
+  .sb-switch, .sb-filters, .sb-index{ flex-wrap:nowrap; overflow-x:auto; padding-bottom:7px; scrollbar-width:none; }
+  .sb-switch::-webkit-scrollbar, .sb-filters::-webkit-scrollbar, .sb-index::-webkit-scrollbar{ display:none; }
+  .sb-switch-item, .sb-filter, .sb-index-item{ flex:0 0 auto; }
+  .era-archive{ grid-template-columns:1fr; grid-auto-rows:auto; gap:8px; }
+  .era-archive .era-folio,
+  .region-asia-archive .atlas-feature, .region-asia-archive .atlas-tower, .region-asia-archive .atlas-wide, .region-asia-archive .atlas-standard,
+  .region-europe-archive .europe-manifesto, .region-europe-archive .europe-column, .region-europe-archive .europe-slab, .region-europe-archive .europe-wide,
+  .region-americas-archive .americas-lead, .region-americas-archive .americas-rise, .region-americas-archive .americas-river, .region-americas-archive .americas-wide,
+  .region-africa-archive .africa-monument, .region-africa-archive .africa-sun, .region-africa-archive .africa-horizon, .region-africa-archive .africa-wide{ grid-column:span 1; grid-row:span 1; min-height:320px; }
 }
 
 /* utility */
