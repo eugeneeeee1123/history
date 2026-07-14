@@ -114,7 +114,7 @@
       </button>`).join('');
     const moreTag = extra>0 ? `<span class="folio-more">+${extra} ${t('more')}</span>` : '';
     return `
-      <article class="era-folio ${eraLayout(index)} ${era.hero?'hero-era':''}" data-era="${era.era_key}" style="--civ:${civ.color}">
+      <article class="era-folio ${eraLayout(index)} ${era.hero?'hero-era':''}" data-era="${era.era_key}" data-era-index="${index}" style="--civ:${civ.color}">
         <div class="folio-body">
           <div class="folio-date ${era.blood?'blood-flag':''}">${esc(era.date)}</div>
           <h3 class="folio-name">${esc(era.name)}</h3>
@@ -127,7 +127,8 @@
 
   function renderMain(){
     const civ = activeCiv();
-    $('#civMain').innerHTML = `<div class="era-archive region-${region.key}-archive">${civ.eras.map((e,i)=>renderEraFolio(civ,e,i)).join('')}</div>`;
+    const filteredClass = state.filter === 'all' ? '' : ' is-filtered';
+    $('#civMain').innerHTML = `<div class="era-archive region-${region.key}-archive${filteredClass}" data-civ-key="${civ.key}">${civ.eras.map((e,i)=>renderEraFolio(civ,e,i)).join('')}</div>`;
   }
 
   function renderAll(){
