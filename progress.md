@@ -2,7 +2,7 @@
 
 每次推送前，在此文件追加一条记录；`Changes` 说明用户可见的改动，`Diff` 记录受影响文件与增删行数。
 
-## 2026-07-14 — `5a82acb` Add Africa archive and refine home layout
+## 2026-07-14 — [`5a82acb`](https://github.com/eugeneeeee1123/history/commit/5a82acb4b1582a8be7d63b85171fd7ce6940fa1c) Add Africa archive and refine home layout
 
 ### Changes
 
@@ -22,7 +22,7 @@
 
 **Total:** +541 / -24 across 5 files.
 
-## 2026-07-12 — `35e8254` Add Africa archive and redesign regional layouts
+## 2026-07-12 — [`35e8254`](https://github.com/eugeneeeee1123/history/commit/35e8254c4b677c957d9351a8f6844160eb6c4b20) Add Africa archive and redesign regional layouts
 
 ### Changes
 
@@ -40,6 +40,27 @@
 | Other 11 files | +86 / -47 | 导航、画廊、首页与渲染逻辑同步。 |
 
 **Total:** +2045 / -115 across 14 files.
+
+## 2026-07-07 — [`9e614c7`](https://github.com/eugeneeeee1123/history/commit/9e614c73c9a687dc0a3c478b51003e4a16c11355) Initial commit
+
+### Changes
+
+- 建立「史阅 · THE ARCHIVUM」静态多页面网站的首个可用版本。
+- 创建首页、亚洲、欧洲、美洲、人物画廊、关于与联系页面，以及各页面的交互脚本。
+- 引入文明、时代与人物档案数据，并补充原始内容、路线图和完整视觉样式。
+
+### Diff
+
+| File group | Diff | Summary |
+| --- | ---: | --- |
+| `data.js` | +4798 / -0 | 建立文明、时代、人物与分类数据集。 |
+| `content.md` | +2884 / -0 | 添加档案内容原稿。 |
+| 7 个页面 HTML | +601 / -0 | 创建首页、区域页、画廊、关于与联系页。 |
+| 5 个交互脚本 | +721 / -0 | 创建共享逻辑、区域渲染、画廊、首页和联系表单行为。 |
+| `style.css` | +582 / -0 | 创建全站设计系统与响应式布局。 |
+| `roadmap.md` | +51 / -0 | 添加项目路线图。 |
+
+**Total:** +9637 / -0 across 16 files.
 
 ## Entry Template
 
